@@ -53,8 +53,8 @@ class HomePage extends StatelessWidget {
                 const InputField(label: 'Container No.'),
                 const SizedBox(height: 10),
 
-                // Expenses Section
-                const ExpenseRow(label: 'Advance'),
+                // ** Claim and Approve Headers (only for the first ExpenseRow) **
+                const ExpenseRow(label: 'Advance', isFirstRow: true),
                 const ExpenseRow(label: 'M.T.Expenses'),
                 const ExpenseRow(label: 'Toll'),
                 const ExpenseRow(label: 'Driver Charges'),
