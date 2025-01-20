@@ -4,7 +4,26 @@ import 'package:transport_entry_app/widgets/header_section.dart';
 import 'package:transport_entry_app/widgets/input_field.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  // Create a global key for the form
+  final _formKey = GlobalKey<FormState>();
+
+  // Function to handle form submission
+  void _handleSubmit(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Form submitted successfully!')),
+      );
+
+      // You can process the form data here (e.g., send to an API or save locally)
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill all required fields!')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +62,6 @@ class HomePage extends StatelessWidget {
                   children: const [
                     Expanded(child: InputField(label: 'Diesel')),
                     SizedBox(width: 8),
-                    Expanded(child: InputField(label: 'Ltrs')),
-                    SizedBox(width: 8),
                     Expanded(child: InputField(label: 'Amount')),
                   ],
                 ),
@@ -77,6 +94,30 @@ class HomePage extends StatelessWidget {
                 const InputField(label: 'Verified By'),
                 const InputField(label: 'Passed'),
                 const InputField(label: 'Driver'),
+
+                const SizedBox(height: 20),
+
+                // Submit Button
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () => _handleSubmit(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 10,
+                      ),
+                    ),
+                    child: const Text(
+                      'Submit',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
