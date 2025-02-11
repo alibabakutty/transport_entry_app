@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transport_entry_app/home_page.dart';
+import 'package:transport_entry_app/screens/home_page.dart';
 
 void main() {
   runApp(const TransportEntryApp());
